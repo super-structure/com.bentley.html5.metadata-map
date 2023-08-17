@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task">
+    <title>Task Topic</title>
+    <shortdesc></shortdesc>
+    <prolog>
+        <resourceid id="HelpID3-task" product="Product1"/>
+    </prolog>
+    <taskbody>
+        <steps>
+            <step>
+                <cmd>Take a step.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

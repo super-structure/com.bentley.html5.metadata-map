@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+  <!-- XSLT -->
+  <message id="RSMP001W" type="WARN">
+    <reason>There appears to be a resourceid included in topic "%1".</reason>
+    <response>Resource IDs in LwDITA topics are not parsed into the JSON map.</response>
+  </message>
+</messages>  

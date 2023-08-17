@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD LIGHTWEIGHT DITA Topic//EN" "lw-topic.dtd">
+<topic id="xdita">
+  <title>XDITA Example</title>
+  <shortdesc>An example of LwDITA using the XDITA format.</shortdesc>
+  <prolog>
+    <data name="resourceid" value="HelpID7"/>
+  </prolog>
+  <body>
+    <p>Lorem ipsum la la la.</p>
+  </body>
+</topic>

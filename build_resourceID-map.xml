@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Bentley Systems, Incorporated. All rights reserved
+-->
+<project xmlns:dita="http://dita-ot.sourceforge.net"
+   name="resourceID-map">
+
+   <target name="bentley:resourceID-map" depends="bentley:make-resourceID-map"
+      description="Build map of resourceid values"/>
+
+   <target name="bentley:make-resourceID-map">
+      <property name="temp.map.file" value="${dita.temp.dir}${file.separator}${user.input.file}"/>
+      <property name="resourceids" value="${dita.output.dir}${file.separator}js${file.separator}resourceids.json"/>
+      
+      <echo level="info">*****************************************************************</echo>
+      <echo level="info">* Resource IDs</echo>
+      <echo level="info">* input = ${temp.map.file}</echo>
+      <echo level="info">* temp.dir = ${dita.temp.dir}${file.separator}</echo>
+      <echo level="info">*****************************************************************</echo>
+      
+      <pipeline message="Generate JSON file of all topics with ResourceID" taskname="bentley:resourceID-map">
+         <xslt
+            style="${dita.plugin.com.bentley.html5.metadata-map.dir}/xsl/resourceID_map2_json.xsl"
+            in="${temp.map.file}"
+            out="${resourceids}"
+            extension=".json"
+            reloadstylesheet="${dita.preprocess.reloadstylesheet}">
+            <param name="locale" expression="${document.locale}"/>
+            <param name="dita.temp.dir" expression="${dita.temp.dir}${file.separator}"/>
+            <xmlcatalog refid="dita.catalog"/>
+            
+         </xslt>
+      </pipeline>
+   </target>
+
+</project>

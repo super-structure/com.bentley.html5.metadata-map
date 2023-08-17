@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept">
+    <title>Concept Topic</title>
+    <shortdesc>This is a sample OASIS DITA concept topic.</shortdesc>
+    <prolog>
+        <resourceid id="HelpID1-concept" product="Product1"/>
+    </prolog>
+    <conbody>
+        <p>Lorem ipsum yadda yadda.</p>
+    </conbody>
+</concept>

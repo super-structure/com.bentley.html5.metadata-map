@@ -1,0 +1,17 @@
+{ "resourceid" :
+	[
+	{
+    
+    "HelpID1-concept" : "concept.html",
+
+    "HelpID2-reference" : "reference.html",
+
+    "HelpID3-task" : "task.html",
+
+    "HelpID4-topic-chunk-parent" : "chunked_topic_parent.html",
+"HelpID5-topic-chunk-child" : "chunked_topic_parent.html",
+
+    
+    "home" : "index.html" }
+	]
+}

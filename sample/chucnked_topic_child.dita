@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="chucnked_topic_child">
+    <title>Chunked Topic Child</title>
+    <shortdesc>This topic is <q>chunked</q> into the parent topic.</shortdesc>
+    <prolog>
+        <resourceid id="HelpID5-topic-chunk-child"/>
+    </prolog>
+    <body>
+        <p></p>
+    </body>
+</topic>

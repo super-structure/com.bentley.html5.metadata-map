@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference">
+    <title>Reference Topic</title>
+    <shortdesc>This is a sample OASIS DITA reference topic.</shortdesc>
+    <prolog>
+        <resourceid id="HelpID2-reference" product="Product1"/>
+    </prolog>    
+    <refbody>
+        <table frame="topbot" rowsep="1" colsep="1" id="table_f1c_rqy_jyb">
+            <title>Sample Table</title>
+            <tgroup cols="3">
+                <colspec colname="c1" colnum="1" colwidth="1*"/>
+                <colspec colname="c2" colnum="2" colwidth="1*"/>
+                <colspec colname="c3" colnum="3" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>Name</entry>
+                        <entry>Description</entry>
+                        <entry>Options</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>Option 1</entry>
+                        <entry/>
+                        <entry/>
+                    </row>
+                    <row>
+                        <entry>Option 2</entry>
+                        <entry/>
+                        <entry/>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </refbody>
+</reference>

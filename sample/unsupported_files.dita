@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="unsupported_files">
+    <title>Unsupported File Types</title>
+    <body>
+        <p>Only <xref href="https://www.dita-ot.org/dev/topics/dita-xml-input" format="html"
+                scope="external">standard DITA</xref> topic files (extension
+                <filepath>.dita</filepath> or <filepath>.xml</filepath>) are supported. </p>
+        <p><xref href="https://www.dita-ot.org/dev/topics/lwdita-input" format="html"
+                scope="external">LwDITA  formats</xref> and <xref
+                href="https://www.dita-ot.org/dev/topics/markdown-input" format="html"
+                scope="external">Markdown</xref> are <i>not</i> supported (extension
+                <filepath>.md</filepath> or <filepath>.html</filepath> as well as
+                <filepath>.xml</filepath> with the <xmlatt>format='xdita</xmlatt>).</p>
+        <note id="note_ihh_fq3_myb">Examples of these file types are included here for testing
+            purposes. Warnings should be generated for these in the output log.</note>
+    </body>
+</topic>
