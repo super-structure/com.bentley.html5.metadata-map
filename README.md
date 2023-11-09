@@ -26,7 +26,7 @@ DITA Open Toolkit Docs: [Creating custom plug-ins](https://www.dita-ot.org/4.1/t
 * [x] Provide warning message in output log for unsupported file types
 * [ ] Add parameter to specify name and output folder or the JSON file
 * [ ] Add other query options for other topic metadata?
-* [ ] Prevent duplicate keys in JSON? (which would otherwise be allowed as DITA OT doesn't check or care)
+* [ ] Prevent duplicate keys in JSON? (which would otherwise be allowed as DITA OT doesn't check or care). For example, this can happen if the same file is included in the map more than once.
 
 # Copyright
 

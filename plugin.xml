@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="dita-ot/plugin.rnc" type="application/relax-ng-compact-syntax"?>
-<!--
-Copyright © Bentley Systems, Incorporated. All rights reserved
--->
+<!-- ******************************************************************************
+*
+* Copyright © Bentley Systems, Incorporated. All rights reserved.
+*
+****************************************************************************** -->
 <plugin id="com.bentley.html5.metadata-map" version="1.0">
     <require plugin="org.dita.html5"/>
     
