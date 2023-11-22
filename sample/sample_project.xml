@@ -6,10 +6,12 @@
   
   <deliverable name="HTML5" id="html5">
     <context idref="html"/>
-    <output href="./sample-output"/>
+    <output href="."/>
     <publication transtype="html5">
       <param name="nav-toc" value="partial"/>
       <param name="clean.temp" value="no"/>
+      <param name="args.metadata-map.name" value="mappping"/>
+      <param name="args.metadata-map.outdir" value="my-mapping"/>
     </publication>
   </deliverable>
 </project>

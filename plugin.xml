@@ -5,14 +5,23 @@
 * Copyright © Bentley Systems, Incorporated. All rights reserved.
 *
 ****************************************************************************** -->
-<plugin id="com.bentley.html5.metadata-map" version="1.0">
+<plugin id="com.bentley.html5.metadata-map" version="1.1">
     <require plugin="org.dita.html5"/>
     
-    <feature extension="package.version" value="1.0.0" />
+    <feature extension="package.version" value="1.1.0" />
     <feature extension="package.support.name" value="Jason Coleman"/>
     <feature extension="package.support.email" value="jason.coleman@bentley.com"/>
     
     <feature extension="ant.import" file="build_resourceID-map.xml"/>
     <feature extension="depend.preprocess.post" value="bentley:resourceID-map"/>
     <feature extension="dita.xsl.messages" file="resource/messages.xml"/>
+    
+    <transtype name="html5" extends="html5" desc="Bentley HTML5">
+        <param name="args.metadata-map.name" desc="Specifies output file name for the metadata map file" type="string">
+            <val default="true">resourceids</val>
+        </param>
+        <param name="args.metadata-map.outdir" desc="Specifies output folder for the metadata map file" type="string">
+            <val default="true">js</val>
+        </param>
+    </transtype>
 </plugin>
