@@ -8,5 +8,6 @@
   </prolog>
   <body>
     <p>Lorem ipsum la la la.</p>
+    <p>Since the DITA OT plugins do not process LwDITA format files at all, the resourceid is never converted and, unfortunately, no warning is issued in the output log.</p>
   </body>
 </topic>

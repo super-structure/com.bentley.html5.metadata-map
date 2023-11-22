@@ -4,31 +4,49 @@ Copyright © Bentley Systems, Incorporated. All rights reserved
 -->
 <project xmlns:dita="http://dita-ot.sourceforge.net"
    name="resourceID-map">
+   
+   <condition property="args.metadata-map.name" value="resourceids">
+      <not>
+         <isset property="args.metadata-map.name"/>
+      </not>
+   </condition>
+   
+   <condition property="args.metadata-map.outdir" value="js">
+      <not>
+         <isset property="args.metadata-map.outdir"/>
+      </not>
+   </condition>
 
-   <target name="bentley:resourceID-map" depends="bentley:make-resourceID-map"
-      description="Build map of resourceid values"/>
+   <target name="bentley:resourceID-map" depends="bentley:check-html-transtype, bentley:make-resourceID-map"
+      description="Build map of resourceid values"/>   
+   
+   <target name="bentley:check-html-transtype">
+      <condition property="html-based.transtype">
+         <contains string="${transtype}" substring="html"/>
+      </condition>
+   </target>
 
-   <target name="bentley:make-resourceID-map">
+   <target name="bentley:make-resourceID-map" if="${html-based.transtype}">
       <property name="temp.map.file" value="${dita.temp.dir}${file.separator}${user.input.file}"/>
-      <property name="resourceids" value="${dita.output.dir}${file.separator}js${file.separator}resourceids.json"/>
+      <property name="out.metamap.file"
+         value="${dita.output.dir}${file.separator}${args.metadata-map.outdir}${file.separator}${args.metadata-map.name}.json"/>
       
       <echo level="info">*****************************************************************</echo>
       <echo level="info">* Resource IDs</echo>
       <echo level="info">* input = ${temp.map.file}</echo>
-      <echo level="info">* temp.dir = ${dita.temp.dir}${file.separator}</echo>
+      <echo level="info">* output = ${out.metamap.file}</echo>
       <echo level="info">*****************************************************************</echo>
       
       <pipeline message="Generate JSON file of all topics with ResourceID" taskname="bentley:resourceID-map">
          <xslt
             style="${dita.plugin.com.bentley.html5.metadata-map.dir}/xsl/resourceID_map2_json.xsl"
             in="${temp.map.file}"
-            out="${resourceids}"
+            out="${out.metamap.file}"
             extension=".json"
             reloadstylesheet="${dita.preprocess.reloadstylesheet}">
             <param name="locale" expression="${document.locale}"/>
             <param name="dita.temp.dir" expression="${dita.temp.dir}${file.separator}"/>
             <xmlcatalog refid="dita.catalog"/>
-            
          </xslt>
       </pipeline>
    </target>

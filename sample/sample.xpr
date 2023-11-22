@@ -15,7 +15,7 @@
     </meta>
     <projectTree name="sample.xpr">
         <folder masterFiles="true" name="Main Files">
-            <file name="sample.xml"/>
+            <file name="sample_project.xml"/>
         </folder>
         <folder path="."/>
     </projectTree>
