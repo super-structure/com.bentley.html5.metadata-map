@@ -65,7 +65,7 @@
         <xsl:for-each select="$topic-contents//resourceid">
             <xsl:call-template name="xml-entry">
                 <xsl:with-param name="target" select="$target-stem"/>
-                <xsl:with-param name="id" select="current()/@id"/>
+                <xsl:with-param name="helpid" select="current()/@ux-context-string"/>
             </xsl:call-template>
         </xsl:for-each>
         <xsl:apply-templates/>
@@ -112,15 +112,15 @@
     
     <xsl:template name="json-entry">    <!-- not used; just let parser convert useing xml-to-json XPath function -->
         <xsl:param name="target"/>
-        <xsl:param name="id"/>
-        <xsl:text>"</xsl:text><xsl:value-of select="$id"/><xsl:text>" : "</xsl:text><xsl:value-of select="$target || '.html'"/><xsl:text>",&#010;</xsl:text>
+        <xsl:param name="helpid"/>
+        <xsl:text>"</xsl:text><xsl:value-of select="$helpid"/><xsl:text>" : "</xsl:text><xsl:value-of select="$target || '.html'"/><xsl:text>",&#010;</xsl:text>
     </xsl:template>
     
     <xsl:template name="xml-entry">
         <xsl:param name="target"/>
-        <xsl:param name="id"/>
+        <xsl:param name="helpid"/>
         <string xmlns="http://www.w3.org/2005/xpath-functions">
-            <xsl:attribute name="key" select="$id"/>
+            <xsl:attribute name="key" select="$helpid"/>
             <xsl:value-of select="$target || '.html'"/>
         </string>
     </xsl:template>
