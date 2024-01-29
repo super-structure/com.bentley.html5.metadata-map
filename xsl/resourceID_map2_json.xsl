@@ -14,8 +14,6 @@
     <xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
     <xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
     
-    <xsl:param name="dita.temp.dir"/>
-    
     <xsl:output method="text"/>
     
     <xsl:template match="/*">
