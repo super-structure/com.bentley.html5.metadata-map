@@ -4,7 +4,7 @@
     <title>Concept Topic</title>
     <shortdesc>This is a sample OASIS DITA concept topic.</shortdesc>
     <prolog>
-        <resourceid id="HelpID1-concept" product="Product1"/>
+        <resourceid product="Product1" ux-context-string="HelpID1-concept"/>
     </prolog>
     <conbody>
         <p>Lorem ipsum yadda yadda.</p>

@@ -4,7 +4,7 @@
     <title>Task Topic</title>
     <shortdesc></shortdesc>
     <prolog>
-        <resourceid id="HelpID3-task" product="Product1"/>
+        <resourceid product="Product1" ux-context-string="HelpID3-task"/>
     </prolog>
     <taskbody>
         <steps>

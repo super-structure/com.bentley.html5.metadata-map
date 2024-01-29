@@ -4,7 +4,7 @@
     <title>Reference Topic</title>
     <shortdesc>This is a sample OASIS DITA reference topic.</shortdesc>
     <prolog>
-        <resourceid id="HelpID2-reference" product="Product1"/>
+        <resourceid product="Product1" ux-context-string="HelpID2-reference"/>
     </prolog>    
     <refbody>
         <table frame="topbot" rowsep="1" colsep="1" id="table_f1c_rqy_jyb">

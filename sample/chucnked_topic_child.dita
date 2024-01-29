@@ -4,7 +4,7 @@
     <title>Chunked Topic Child</title>
     <shortdesc>This topic is <q>chunked</q> into the parent topic.</shortdesc>
     <prolog>
-        <resourceid id="HelpID5-topic-chunk-child"/>
+        <resourceid ux-context-string="HelpID5-topic-chunk-child"/>
     </prolog>
     <body>
         <p></p>

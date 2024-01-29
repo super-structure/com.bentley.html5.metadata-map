@@ -1,4 +1,241 @@
 
+/*!
+ *  This file is part of the DITA Bootstrap plug-in for DITA Open Toolkit.
+ *  See the accompanying LICENSE file for applicable licenses.
+ */
+
+.cmdname,
+.codeph,
+.filepath,
+.option,
+.parmname {
+  color: var(--bs-code-color);
+  font-family: var(--bs-font-monospace);
+}
+
+.numcharref,
+.parameterentity,
+.textentity,
+.xmlatt,
+.xmlelement,
+.xmlnsname,
+.xmlpi {
+  color: var(--bs-purple);
+  font-family: var(--bs-font-monospace);
+}
+
+.cmdname,
+.parmname {
+  color: #1d365d;
+  font-weight: bold;
+}
+
+.boolean {
+  color: var(--bs-green);
+}
+
+.state {
+  color: var(--bs-red);
+}
+
+.navbar-brand > svg {
+  margin: 4px 6px;
+  vertical-align: text-top;
+}
+
+.bs-container {
+  margin: 3rem auto;
+}
+
+.bs-sidebar-nav {
+  overflow: auto;
+}
+
+.bs-header {
+  z-index: 1020;
+}
+
+/*!
+ *  This file is part of the DITA Bootstrap plug-in for DITA Open Toolkit.
+ *  See the accompanying LICENSE file for applicable licenses.
+ */
+
+/*! These values define the relative width of the
+ *  main content window compared with the sidebar-nav
+ */
+@media (min-width: 768px) {
+  .bs-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas: 'sidebar main';
+    grid-template-columns: 1fr 3fr;
+    width: 768px;
+  }
+}
+
+@media (min-width: 992px) {
+  .bs-container {
+    width: 992px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bs-container {
+    width: 1200px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .bs-container {
+    width: 1400px;
+  }
+}
+
+/*! These values define the relative width of the
+ *  main content window compared with the sidebar-nav
+ */
+@media (min-width: 768px) {
+  .bs-main {
+    width: 576px;
+  }
+}
+
+@media (min-width: 992px) {
+  .bs-main {
+    width: 744px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bs-main {
+    width: 900px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .bs-main {
+    width: 1050px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bs-sidebar-nav {
+    display: block !important;
+    height: calc(100vh - 7rem);
+    margin-left: 2rem;
+    overflow-y: auto;
+    padding-left: 0.25rem;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .bs-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+}
+
+:root {
+  --math-font: 'Noto Serif', serif;
+}
+
+mathml, .mathml {
+    font-family: var(--math-font);
+    /*font-style: italic;*/
+    color: inherit;
+}
+
+.mathml > svg text {
+    color: red;
+}
+
+.equation-figure {
+    text-align: left;
+}
+
+.equation-figure .eqn-dl {
+    margin-left: 40px;
+    margin-right: 40px;
+    display: table;
+}
+
+.equation-figure .eqn-dlentry {
+    display: table-row;
+    vertical-align: middle;
+}
+
+.equation-figure .eqn-dlentry .eqn-dt, 
+.equation-figure .eqn-dlentry .eqn-equal,
+.equation-figure .eqn-dlentry .eqn-dd {
+    display: table-cell;
+    padding-bottom: 16px;
+   /* border: 1px solid #eee;*/
+    min-height: 2em;
+    vertical-align: top;
+    width: revert;
+}
+
+.equation-figure .eqn-dlentry .eqn-dt {
+    font-family: var(--math-font);
+    color: var(--bs-body-color);
+    font-weight: normal;
+    font-style: italic;
+}
+
+.equation-figure .eqn-dlentry .eqn-dt, 
+.equation-figure .eqn-dlentry .eqn-equal {
+    min-width: 40px;    
+}
+.equation-figure .eqn-dlentry .eqn-equal {
+    text-align: left;
+}
+
+.equation-block {
+    font-family: var(--math-font);
+    vertical-align: middle;
+    clear: both;
+    width: 100%;
+    display: flex;
+}
+
+.equation-inline {
+    font-family: var(--math-font);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.equation-block .equation-text {
+    font-style: italic;
+    font-weight: 500;
+    padding-bottom: 12px;
+    font-size: 1.1em;
+}
+
+div.mathmls > div.mathml {
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+div.equation-block > div.mathml {
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.equation-block > .equation-number {
+    font-style: normal;
+    text-align: right;
+    align-self: center;
+    padding-right: 40px;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
 
 /*!
  *  This file is part of the DITA Bootstrap plug-in for DITA Open Toolkit.
@@ -141,16 +378,6 @@ em, .em {
 
 u.em, b.em {
     font-style: normal;
-}
-
-math, .mathml {
-    font-family: var(--math-font);
-    /*font-style: italic;*/
-    color: black;
-}
-
-.mathml {
-    display: inline-block;
 }
 
 .boolean {

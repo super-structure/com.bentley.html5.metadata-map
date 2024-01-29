@@ -4,7 +4,7 @@
     <title>Chunked Topic Parent</title>
     <shortdesc>This topic is the <q>parent</q> of a topic.</shortdesc>
     <prolog>
-        <resourceid id="HelpID4-topic-chunk-parent"/>
+        <resourceid ux-context-string="HelpID4-topic-chunk-parent"/>
     </prolog>
     <body>
         <p>This topic uses the <xmlatt>chunk="to-content"</xmlatt> value in the DITA map.</p>
