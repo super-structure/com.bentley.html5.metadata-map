@@ -12,7 +12,7 @@ DITA Open Toolkit plug-in for generating a JSON file map of Resource ID values w
 
 ## Usage
 
-Include a `<resourceid>` element within the `<prolog>` in at least one DITA topic. A JSON file will be generated in your output directory with a list of each  `<resourceid>` element `@id` value as a key and the relative path to the output HTML file.
+Include a `<resourceid>` element within the `<prolog>` in at least one DITA topic. A JSON file will be generated in your output directory with a list of each  `<resourceid>` element `@ux-context-string` value as a key and the relative path to the output HTML file.
 
 The relative URLs in the JSON file values are relative to the input DITA map (regardless of the `args.metadata-map.outdir` value).
 
