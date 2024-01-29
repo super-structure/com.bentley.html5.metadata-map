@@ -5,10 +5,10 @@
 * Copyright © Bentley Systems, Incorporated. All rights reserved.
 *
 ****************************************************************************** -->
-<plugin id="com.bentley.html5.metadata-map" version="1.1">
+<plugin id="com.bentley.html5.metadata-map" version="1.2">
     <require plugin="org.dita.html5"/>
     
-    <feature extension="package.version" value="1.1.0" />
+    <feature extension="package.version" value="1.2.0" />
     <feature extension="package.support.name" value="Jason Coleman"/>
     <feature extension="package.support.email" value="jason.coleman@bentley.com"/>
     
