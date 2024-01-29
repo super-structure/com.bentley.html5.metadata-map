@@ -16,7 +16,7 @@
     <feature extension="depend.preprocess.post" value="bentley:resourceID-map"/>
     <feature extension="dita.xsl.messages" file="resource/messages.xml"/>
     
-    <transtype name="html5" extends="html5" desc="Bentley HTML5">
+    <transtype name="html5" desc="Bentley HTML5"><!--  extends="html5" -->
         <param name="args.metadata-map.name" desc="Specifies output file name for the metadata map file" type="string">
             <val default="true">resourceids</val>
         </param>
