@@ -48,7 +48,8 @@
     
     <xsl:template match="//topicref[(contains(@format,'dita') or not(@format)) 
                                      and not(@dita-ot:orig-format)
-                                     and not(ancestor::topicref[@chunk='to-content'])]"> <!-- since 'dita' is the default format -->
+                                     and not(ancestor::topicref[@chunk='to-content'])
+                                     and not(ancestor::reltable)]"> <!-- since 'dita' is the default format -->
         <xsl:variable name="dita-target">
             <xsl:choose>
                 <xsl:when test="contains(./@href,'#')"><xsl:value-of  select="substring-before(./@href,'#')"/></xsl:when>

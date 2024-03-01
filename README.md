@@ -21,11 +21,11 @@ The relative URLs in the JSON file values are relative to the input DITA map (re
 ## Parameters
 
 `args.metadata-map.name`
-: The stem name of the resulting JSON file
+    : The stem name of the resulting JSON file
 
 `args.metadata-map.outdir`
-: The name of the sub-directory of the resulting JSON file. This is _relative_ to output `out` sub-directory. 
-: **Tip:** Use a value of . to place the JSON file in the `\out`  sub-directory.
+    : The name of the sub-directory of the resulting JSON file. This is _relative_ to output `out` sub-directory. 
+    : **Tip:** Use a value of . to place the JSON file in the `\out`  sub-directory.
 
 ## Reference
 

@@ -18,7 +18,7 @@
         </topicmeta>
     </topicref>
     <topicref href="chunked_topic_parent.dita" chunk="to-content">
-        <topicref href="chucnked_topic_child.dita"/>
+        <topicref href="chunked_topic_child.dita"/>
     </topicref>
     <topicref href="unsupported_files.dita">
         <topicref href="topic.md" format="markdown" scope="local" type="topic">
@@ -37,4 +37,34 @@
             </topicmeta>
         </topicref>
     </topicref>
+    <reltable>
+        <relheader>
+            <relcolspec type="concept"/>
+            <relcolspec type="reference"/>
+            <relcolspec type="task"/>
+        </relheader>
+        <relrow>
+            <relcell>
+                <topicref href="concept.dita" format="dita" scope="local" type="concept">
+                    <topicmeta>
+                        <navtitle>Concept Topic</navtitle>
+                    </topicmeta>
+                </topicref>
+            </relcell>
+            <relcell>
+                <topicref href="reference.dita" format="dita" scope="local" type="reference">
+                    <topicmeta>
+                        <navtitle>Reference Topic</navtitle>
+                    </topicmeta>
+                </topicref>
+            </relcell>
+            <relcell>
+                <topicref href="task.xml" format="dita" scope="local" type="task">
+                    <topicmeta>
+                        <navtitle>Task Topic</navtitle>
+                    </topicmeta>
+                </topicref>
+            </relcell>
+        </relrow>
+    </reltable>
 </map>
