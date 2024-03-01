@@ -11,6 +11,10 @@
     exclude-result-prefixes="#all" 
     version="3.0">
     
+    <xsl:param name="TEMPDIR"/>
+    <xsl:param name="METADATA-MAP-DIR"/>
+    <xsl:param name="METADATA-MAP-NAME"/>
+    
     <xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
     <xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
     
@@ -19,19 +23,26 @@
     <xsl:template match="/*">
         <xsl:variable name="xml-json-format">
             <map xmlns="http://www.w3.org/2005/xpath-functions">
-                <map key="resourcid" xmlns="http://www.w3.org/2005/xpath-functions">
-                    <string key="home" xmlns="http://www.w3.org/2005/xpath-functions">index.html</string>
+                <array key="resourcid" xmlns="http://www.w3.org/2005/xpath-functions">
+                    <map>
+                        <string key="home" xmlns="http://www.w3.org/2005/xpath-functions">index.html</string>
+                    </map>
                     <xsl:apply-templates/>
-                </map>
+                </array>
             </map>
         </xsl:variable>
-        <xsl:result-document href="file:///D:/Projects/ConcreteDesignCenter/docs/out/js/resourceids.xml" method="xml" indent="yes">
+        <xsl:variable name="xml-out" select="$TEMPDIR || $METADATA-MAP-DIR || '\' || $METADATA-MAP-NAME ||'.xml'"/>
+        <!-- save output to temporary XML file for potential debugging -->
+        <xsl:result-document href="file:/{$xml-out}" method="xml" indent="yes">
             <xsl:copy-of select="$xml-json-format"/>
         </xsl:result-document>
+        
         <!-- Use XPath 3.0 function chaining -->
-        <xsl:value-of select="$xml-json-format => xml-to-json() => parse-json() => serialize(map {
+        <!-- Note: the parse-json & serilize functions are used to map forward slashes in relative file paths -->
+        <xsl:value-of select="xml-to-json($xml-json-format) => parse-json() => serialize(map {
             'method': 'json',
-            'use-character-maps': map {'/': '/'}
+            'use-character-maps': map {'/': '/'},
+            'indent' : true()
             })"/>
     </xsl:template>
     
@@ -117,10 +128,13 @@
     <xsl:template name="xml-entry">
         <xsl:param name="target"/>
         <xsl:param name="helpid"/>
-        <string xmlns="http://www.w3.org/2005/xpath-functions">
-            <xsl:attribute name="key" select="$helpid"/>
-            <xsl:value-of select="$target || '.html'"/>
-        </string>
+        <!-- the key:value pairs are nested in a map to allow for duplicate key values; which cannot be prevented in input (most JSON parsers will then just take the _last_ match) -->
+        <map xmlns="http://www.w3.org/2005/xpath-functions">
+            <string xmlns="http://www.w3.org/2005/xpath-functions">
+                <xsl:attribute name="key" select="$helpid"/>
+                <xsl:value-of select="$target || '.html'"/>
+            </string>
+        </map>
     </xsl:template>
     
     <xsl:template match="//topicgroup | //topichead">

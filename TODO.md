@@ -6,6 +6,8 @@
 * [x] Ensure that this plugin _only_ runs for HTML5-based output (i.e., _not_ for PDF)
 * [x] Use xml-to-json XPATH functions in XSLT 3.0 (also can use parsing and serializing to condense the otherwise sparse file!)
 
+Reference: [Transforming JSON using XSLT 3.0](https://www.saxonica.com/papers/xmlprague-2016mhk.pdf). Michael Kay. 2016.
+
 ## Accommodate deep links to IDs
 
 2023-12-20 request from Bill Genemaras - can we handle links to sections or other IDs within a topic?
@@ -17,6 +19,7 @@
 Prevent duplicate keys in JSON? (which would otherwise be allowed as DITA OT doesn't check or care). For example, this can happen if the same file is included in the map more than once.
 
 * [ ] use for-each-group and sequence to build the intermediate XML file.
+* [x] For now, re-structured the output JSON to place each key:value pair within an group (array), so there can be duplicates.
 
 ## Possible future features
 

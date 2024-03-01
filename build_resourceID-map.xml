@@ -22,7 +22,10 @@ Copyright © Bentley Systems, Incorporated. All rights reserved
    
    <target name="bentley:check-html-transtype">
       <condition property="html-based.transtype">
-         <contains string="${transtype}" substring="html"/>
+         <or>
+            <contains string="${transtype}" substring="html"/>
+            <contains string="${transtype}" substring="HTML"/>
+         </or>
       </condition>
    </target>
 
@@ -45,7 +48,9 @@ Copyright © Bentley Systems, Incorporated. All rights reserved
             extension=".json"
             reloadstylesheet="${dita.preprocess.reloadstylesheet}">
             <param name="locale" expression="${document.locale}"/>
-            <param name="dita.temp.dir" expression="${dita.temp.dir}${file.separator}"/>
+            <param name="METADATA-MAP-DIR" expression="${args.metadata-map.outdir}"/>
+            <param name="METADATA-MAP-NAME" expression="${args.metadata-map.name}"/>
+            <param name="TEMPDIR" expression="${dita.temp.dir}${file.separator}"/>
             <xmlcatalog refid="dita.catalog"/>
          </xslt>
       </pipeline>
