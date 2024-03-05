@@ -33,7 +33,7 @@
         </xsl:variable>
         <xsl:variable name="xml-out" select="$TEMPDIR || $METADATA-MAP-DIR || '\' || $METADATA-MAP-NAME ||'.xml'"/>
         <!-- save output to temporary XML file for potential debugging -->
-        <xsl:result-document href="file:/{$xml-out}" method="xml" indent="yes">
+        <xsl:result-document href="file:/{$xml-out}" method="xml" indent="no">
             <xsl:copy-of select="$xml-json-format"/>
         </xsl:result-document>
         
@@ -142,6 +142,6 @@
         <xsl:apply-templates/>
     </xsl:template>
     
-    <xsl:template match="//title | //navtitle | //linktext | //shortdesc | //abstract | //keydef //topicmeta"/>
+    <xsl:template match="//title | //navtitle | //linktext | //shortdesc | //abstract | //keydef //topicmeta | //data | //filepath"/>
     
 </xsl:stylesheet>

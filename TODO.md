@@ -19,7 +19,7 @@ Reference: [Transforming JSON using XSLT 3.0](https://www.saxonica.com/papers/xm
 Prevent duplicate keys in JSON? (which would otherwise be allowed as DITA OT doesn't check or care). For example, this can happen if the same file is included in the map more than once.
 
 * [ ] use for-each-group and sequence to build the intermediate XML file.
-* [x] For now, re-structured the output JSON to place each key:value pair within an group (array), so there can be duplicates.
+* [x] For now, re-structured the output JSON to place each key:value pair within an group (array), so there can be duplicates. [https://softwareengineering.stackexchange.com/questions/321534/what-json-structure-to-use-for-key-value-pairs](https://softwareengineering.stackexchange.com/questions/321534/what-json-structure-to-use-for-key-value-pairs)
 
 ## Possible future features
 
