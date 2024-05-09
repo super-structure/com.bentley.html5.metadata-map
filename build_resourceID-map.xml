@@ -29,7 +29,8 @@ Copyright © Bentley Systems, Incorporated. All rights reserved
       </condition>
    </target>
 
-   <target name="bentley:make-resourceID-map" if="${html-based.transtype}">
+   <target name="bentley:make-resourceID-map" if="${html-based.transtype}"
+      description="Build map of resourceid values">
       <property name="temp.map.file" value="${dita.temp.dir}${file.separator}${user.input.file}"/>
       <property name="out.metamap.file"
          value="${dita.output.dir}${file.separator}${args.metadata-map.outdir}${file.separator}${args.metadata-map.name}.json"/>
@@ -47,7 +48,7 @@ Copyright © Bentley Systems, Incorporated. All rights reserved
             out="${out.metamap.file}"
             extension=".json"
             reloadstylesheet="${dita.preprocess.reloadstylesheet}">
-            <param name="locale" expression="${document.locale}"/>
+            <!--<param name="locale" expression="${document.locale}"/>-->
             <param name="METADATA-MAP-DIR" expression="${args.metadata-map.outdir}"/>
             <param name="METADATA-MAP-NAME" expression="${args.metadata-map.name}"/>
             <param name="TEMPDIR" expression="${dita.temp.dir}${file.separator}"/>

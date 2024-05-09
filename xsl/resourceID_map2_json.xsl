@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ******************************************************************************
-* XML Stylesheet to output list of all resourceid @ids to a JSON file.
+* XML Stylesheet to output list of all <resourceid> @ux-context-string & filepaths
+* to a JSON file.
 *
 * Copyright © Bentley Systems, Incorporated. All rights reserved.
 *
