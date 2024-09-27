@@ -18,14 +18,15 @@ The relative URLs in the JSON file values are relative to the input DITA map (re
 
 [LwDITA](https://www.dita-ot.org/4.2/topics/lwdita-input) and [Markdown](https://www.dita-ot.org/4.2/topics/markdown-input) input are _not_ supported, nor are the likely to be. In the case of XDITA and HDITA, it is not clear how the authors of these formats intended for a resource identifier to be included as metadata, if at all. For MDITA and Markdown, the current DITA Open Toolkit plugins (as of 4.2) do not seem to correctly parse the YAML metadata block as described in the DITA OT documentation. Further, the parsing seems limited only to the `@appid` attribute, _not_ the `@ux-content-string` attribute which is intended for use with context-sensitive help. Thus, it seems reasonable that if a resource identifier needs to be mapped to a topic for post-processing of some sort, then using a standard DITA XML format for topics is warranted. 
 
-## Parameters
+### Parameters
 
-`args.metadata-map.name`
-    : The stem name of the resulting JSON file
+* `args.metadata-map.name`
+    The stem name of the resulting JSON file
 
-`args.metadata-map.outdir`
-    : The name of the sub-directory of the resulting JSON file. This is _relative_ to output `out` sub-directory. 
-    : **Tip:** Use a value of . to place the JSON file in the `\out`  sub-directory.
+* `args.metadata-map.outdir`
+    The name of the sub-directory of the resulting JSON file. This is _relative_ to output `out` sub-directory. 
+    
+    **Tip:** Use a value of . to place the JSON file in the `\out`  sub-directory.
 
 ## Reference
 
