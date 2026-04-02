@@ -8,7 +8,9 @@ DITA Open Toolkit plug-in for generating a JSON file map of Resource ID values w
 1. Download or clone this repository to your DITA OT `plugins` directory.
 2. Run the `dita --install` command.
 
-**Note:** This plug-in requires the org.dita.html5 plug-in, which is included by default in most distributions of the DITA Open Toolkit.
+**Note:** This plug-in requires the [org.dita.html5 plug-in](https://github.com/dita-ot/dita-ot/tree/develop/src/main/plugins/org.dita.html5), which is included by default in most distributions of the DITA Open Toolkit.
+
+---
 
 ## Usage
 
@@ -16,17 +18,35 @@ Include a `<resourceid>` element within the `<prolog>` in at least one DITA topi
 
 The relative URLs in the JSON file values are relative to the input DITA map (regardless of the `args.metadata-map.outdir` value).
 
-[LwDITA](https://www.dita-ot.org/4.2/topics/lwdita-input) and [Markdown](https://www.dita-ot.org/4.2/topics/markdown-input) input are _not_ supported, nor are the likely to be. In the case of XDITA and HDITA, it is not clear how the authors of these formats intended for a resource identifier to be included as metadata, if at all. For MDITA and Markdown, the current DITA Open Toolkit plugins (as of 4.2) do not seem to correctly parse the YAML metadata block as described in the DITA OT documentation. Further, the parsing seems limited only to the `@appid` attribute, _not_ the `@ux-content-string` attribute which is intended for use with context-sensitive help. Thus, it seems reasonable that if a resource identifier needs to be mapped to a topic for post-processing of some sort, then using a standard DITA XML format for topics is warranted. 
-
 ### Parameters
 
 * `args.metadata-map.name`
-    The stem name of the resulting JSON file
+    The stem name of the resulting JSON file. 
+    Defaults to `resourceids`
 
 * `args.metadata-map.outdir`
-    The name of the sub-directory of the resulting JSON file. This is _relative_ to output `out` sub-directory. 
+    The name of the sub-directory of the resulting JSON file. This is _relative_ to output `/out` sub-directory. Defaults    to    `./js/'. 
     
-    **Tip:** Use a value of . to place the JSON file in the `\out`  sub-directory.
+    **Tip:** Use a value of `.` to place the JSON file in the `/out`  sub-directory.
+
+### Notes on LwDITA and Markdown
+
+[LwDITA](https://www.dita-ot.org/4.2/topics/lwdita-input) and [Markdown](https://www.dita-ot.org/4.2/topics/markdown-input) input are _not_ supported, nor are the likely to be. In the case of XDITA and HDITA, it is not clear how the authors of these formats intended for a resource identifier to be included as metadata, if at all. For MDITA and Markdown, the current DITA Open Toolkit plugins (as of 4.2) do not seem to correctly parse the YAML metadata block as described in the DITA-OT documentation. Further, the parsing seems limited only to the `@appid` attribute, _not_ the `@ux-content-string` attribute which is intended for use with context-sensitive help. Thus, it seems reasonable that if a resource identifier needs to be mapped to a topic for post-processing of some sort, then using a standard DITA XML format for topics is warranted. 
+
+---
+
+## Release Notes
+
+- **v1.4.0** - included some error handling to prevent missing or corrupt DITA topics from causing the entire JSON file to be empty.
+     correctly pass the `args.outext` to create the correct relative URLs in the JSON file (i..e., doesn't just assume they're .html).
+- **v1.3.0** - Improved documentation in Readme and source code
+- **v1.2.0** - use `ux-context-string` attribute as per the DITA V1.3 specification
+    work-around for duplicate IDs
+    Removed `reltable` bug which was causing duplicate entries.
+- **v1.1.0** - Initial release on GitHub
+
+
+---
 
 ## Reference
 
