@@ -9,22 +9,28 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot"
+    xmlns:bentley="http://www.bentley.com/"
     exclude-result-prefixes="#all" 
     version="3.0">
     
     <xsl:param name="TEMPDIR"/>
     <xsl:param name="METADATA-MAP-DIR"/>
     <xsl:param name="METADATA-MAP-NAME"/>
+    <xsl:param name="OUTEXT" select="'.html'"/>
+    <xsl:param name="element-name" select="'resourceid'"/>
+    <xsl:param name="element-attr" select="'ux-context-string'"/>
     
     <xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
     <xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
+    
+    <xsl:import href="plugin:com.bentley.base:xsl/custom-functions.xsl"/>
     
     <xsl:output method="text"/>
     
     <xsl:template match="/*">
         <xsl:variable name="xml-json-format">
             <map xmlns="http://www.w3.org/2005/xpath-functions">
-                <array key="resourcid" xmlns="http://www.w3.org/2005/xpath-functions">
+                <array key="{$element-name}" xmlns="http://www.w3.org/2005/xpath-functions">
                     <map>
                         <string key="home" xmlns="http://www.w3.org/2005/xpath-functions">index.html</string>
                     </map>
@@ -32,53 +38,65 @@
                 </array>
             </map>
         </xsl:variable>
-        <xsl:variable name="xml-out" select="$TEMPDIR || $METADATA-MAP-DIR || '\' || $METADATA-MAP-NAME ||'.xml'"/>
+        <xsl:variable name="xml-out" select="bentley:make-uri($TEMPDIR || $METADATA-MAP-DIR || '\' || $METADATA-MAP-NAME ||'.xml')"/>
         <!-- save output to temporary XML file for potential debugging -->
-        <xsl:result-document href="file:/{$xml-out}" method="xml" indent="no">
+        <xsl:result-document href="{$xml-out}" method="xml" indent="no">
             <xsl:copy-of select="$xml-json-format"/>
         </xsl:result-document>
         
-        <!-- Use XPath 3.0 function chaining -->
-        <!-- Note: the parse-json & serilize functions are used to map forward slashes in relative file paths -->
-        <xsl:value-of select="xml-to-json($xml-json-format) => parse-json() => serialize(map {
-            'method': 'json',
-            'use-character-maps': map {'/': '/'},
-            'indent' : true()
-            })"/>
-    </xsl:template>
+        <xsl:try>
+            <!-- Use XPath 3.0 function chaining -->
+            <!-- Note: the parse-json & serilize functions are used to map forward slashes in relative file paths -->
+            <xsl:value-of select="xml-to-json($xml-json-format) => parse-json() => serialize(map {
+                'method': 'json',
+                'use-character-maps': map {'/': '/'},
+                'indent' : true()
+                })"/>
+            <xsl:catch>
+                <xsl:message>Error: could not produce JSON output</xsl:message>
+            </xsl:catch>
+        </xsl:try>
+        </xsl:template>
     
     <xsl:template match="//topicref[(contains(@format,'dita') or not(@format)) 
                                      and not(@dita-ot:orig-format)
                                      and not(ancestor::topicref[@chunk='to-content'])
                                      and not(ancestor::reltable)]"> <!-- since 'dita' is the default format -->
-        <xsl:variable name="dita-target">
-            <xsl:choose>
-                <xsl:when test="contains(./@href,'#')"><xsl:value-of  select="substring-before(./@href,'#')"/></xsl:when>
-                <xsl:otherwise><xsl:value-of select="./@href"/></xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="target-stem">
-            <xsl:choose>
-                <xsl:when test="ends-with($dita-target,'.xml')">
-                    <xsl:value-of select="substring-before($dita-target,'.xml')"/>
-                </xsl:when>
-                <xsl:when test="ends-with($dita-target,'.dita')">
-                    <xsl:value-of select="substring-before($dita-target,'.dita')"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="topic-contents" select="document($dita-target,.)/*"/>
-        <!-- TODO:
-            1) use a for-each-group and sequence to prevent duplicate key names in the JSON file?
-            2) create a template that can take in the element name in xpath selector & value in 'id'?
-        
-        -->
-        <xsl:for-each select="$topic-contents//resourceid">
-            <xsl:call-template name="xml-entry">
-                <xsl:with-param name="target" select="$target-stem"/>
-                <xsl:with-param name="helpid" select="current()/@ux-context-string"/>
-            </xsl:call-template>
-        </xsl:for-each>
+        <xsl:variable name="dita-target" select="dita-ot:strip-fragment(./@href)"/>
+        <xsl:choose>
+            <xsl:when test="doc-available(dita-ot:resolve-href-path(./@href))">
+                <xsl:variable name="topic-contents" select="document(dita-ot:resolve-href-path(./@href),.)/*"/>
+                <xsl:variable name="target-stem">
+                    <xsl:choose>
+                        <xsl:when test="ends-with($dita-target,'.xml')">
+                            <xsl:value-of select="substring-before($dita-target,'.xml')"/>
+                        </xsl:when>
+                        <xsl:when test="ends-with($dita-target,'.dita')">
+                            <xsl:value-of select="substring-before($dita-target,'.dita')"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:for-each select="$topic-contents//*[name() = $element-name]">
+                    <xsl:call-template name="xml-entry">
+                        <xsl:with-param name="helpid">
+                            <xsl:choose>
+                                <xsl:when test="not($element-attr = '')">
+                                    <xsl:value-of select="current()/@*[name()=$element-attr]"/>
+                                </xsl:when>
+                                <xsl:otherwise><xsl:value-of select="current()"/></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
+                        <xsl:with-param name="target" select="$target-stem"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </xsl:when>
+        <xsl:otherwise>
+                <xsl:call-template name="output-message">
+                    <xsl:with-param name="id" select="'DOTX008E'"/>
+                    <xsl:with-param name="msgparams">%1=<xsl:value-of select="$dita-target"/></xsl:with-param>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
         <xsl:apply-templates/>
     </xsl:template>
     
@@ -134,7 +152,7 @@
         <map xmlns="http://www.w3.org/2005/xpath-functions">
             <string xmlns="http://www.w3.org/2005/xpath-functions">
                 <xsl:attribute name="key" select="$helpid"/>
-                <xsl:value-of select="$target || '.html'"/>
+                <xsl:value-of select="$target || $OUTEXT"/>
             </string>
         </map>
     </xsl:template>
@@ -143,6 +161,16 @@
         <xsl:apply-templates/>
     </xsl:template>
     
-    <xsl:template match="//title | //navtitle | //linktext | //shortdesc | //abstract | //keydef //topicmeta | //data | //filepath"/>
+    <xsl:template match="//title |
+        //navtitle |
+        //linktext |
+        //shortdesc |
+        //abstract |
+        //keydef |
+        //topicmeta |
+        //data |
+        //filepath"/>
+    
+    <xsl:template match="//comment() | //processing-instruction()"/>
     
 </xsl:stylesheet>
